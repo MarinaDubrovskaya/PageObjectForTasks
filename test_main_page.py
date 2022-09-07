@@ -1,10 +1,8 @@
-import pytest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
+from .pages.main_page import MainPage
 
-def test_availability_of_add_to_cart_button(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    browser.get(link)
-    button = len(browser.find_elements(By.CSS_SELECTOR, ".btn-add-to-basket"))  
-    assert button > 0, "Button is not found!"
+
+def test_guest_can_go_to_login_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    page.open()                      # открываем страницу
+    page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
